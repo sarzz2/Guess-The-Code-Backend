@@ -25,9 +25,9 @@ tags_metadata = []
 app = FastAPI(openapi_tags=tags_metadata)
 
 # Middlewares
-app.add_middleware(
-    TrustedHostMiddleware, allowed_hosts=["127.0.0.1", ""]
-)
+# app.add_middleware(
+#     TrustedHostMiddleware, allowed_hosts=["127.0.0.1", ""]
+# )
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
