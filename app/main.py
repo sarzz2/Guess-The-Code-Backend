@@ -3,7 +3,8 @@ from fastapi import FastAPI
 
 from .routers import generate_code_block
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
+
+# from fastapi.middleware.trustedhost import TrustedHostMiddleware
 
 # from starlette.middleware.sessions import SessionMiddleware
 
