@@ -14,8 +14,8 @@ TOKEN = os.getenv("TOKEN")
 
 @router.get("/code-block", tags=[""])
 async def code_block(request: Request):
-    # page = random.Random().randint(1, 30)
-    code = requests.get("https://api.github.com/gists/public", auth=("sarzz2", TOKEN))
+    page = random.Random().randint(1, 30)
+    code = requests.get(f"https://api.github.com/gists/public?page={page}", auth=("sarzz2", TOKEN))
     result = code.json()
     r = random.Random().randint(0, len(result))
     raw_url = str(list((result[r]["files"]).values())[0]["raw_url"])
@@ -63,8 +63,9 @@ async def code_block(request: Request):
         "CSV",
         "Bash",
     ]
-    xyz = random.sample(all_languages, 3)
-    xyz.append(language)
+    xyz = random.sample(all_languages, 4)
+    if language not in xyz:
+        xyz[random.randint(1, 3)] = language
     return JSONResponse(
         content={"block": str(block.text[0:450]), "language": xyz, "answer": language}
     )
